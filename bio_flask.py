@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 from flask import Flask, jsonify, render_template
 
@@ -39,12 +40,22 @@ def metaData(sample):
     
     """Fetch the metadata for sample whose sample matches
        the path variable supplied by the user, or a 404 if not."""
-    sample_id=int(sample)
+    
     for each in sample_metaData:
-        search_term = each['SAMPLEID']
-        print(search_term,sample_id)
-        if search_term == sample_id:
+        search = each['SAMPLEID']
+        search_term = "BB_"+ str(search)
+        if search_term == sample:
             return jsonify(each)
+        message = "Sample ID  " + sample + " not found."
+        return jsonify({"error": message}), 404
+
+@app.route("/wfreq/<sample>")
+def wfreq(sample):
+    for each in sample_metaData:
+        search = each['SAMPLEID']
+        search_term = "BB_" + str(search)
+        if search_term == sample:
+            return jsonify(int(each['WFREQ']))
         message = "Sample ID  " + sample + " not found."
         return jsonify({"error": message}), 404
 

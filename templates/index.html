@@ -7,7 +7,7 @@
     <title>Biodiversity</title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
    <div class="container-fluid">
@@ -22,16 +22,16 @@
           <div class="form-group">
               <p>SELECT Sample:</p>
               
-          <select class = "select_width" id="select_id">
-                    <option></option>
+          <select class="select_width" id="selectSample">
+                    <option >Select Sample</option>
                   </select>
             
           </div>
         </div>
         
+
+    <script src="{{ url_for('static', filename='js/sample_names.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     
-    <script>
-       
-    </script>
 </body>
 </html>
