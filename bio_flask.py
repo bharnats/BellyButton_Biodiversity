@@ -7,6 +7,12 @@ from flask import Flask, jsonify, render_template
 filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
 samples_df = pd.read_csv(filepath1)
 
+# transpose the dataframe inorder to loop through the df for each sample_id
+t_df = samples_df.T
+t_df.columns = t_df.iloc[0]
+t_df.drop('otu_id')
+
+# list of sample names
 samples = list(samples_df.columns.values)
 # read the csv files into pandas as dataframes
 filepath2 = os.path.join("belly_button_biodiversity_otu_id.csv")
@@ -16,7 +22,7 @@ filepath3 = os.path.join("belly_button_biodiversity_MetaData.csv")
 metaData_df = pd.read_csv(filepath3)
 
 sample_metaData = metaData_df.to_dict('records')
-print(sample_metaData)
+
 
 
 
@@ -58,6 +64,15 @@ def wfreq(sample):
             return jsonify(int(each['WFREQ']))
         message = "Sample ID  " + sample + " not found."
         return jsonify({"error": message}), 404
+
+@app.route('/samples/<sample>')
+def samp_values(sample):
+    for index,row in t_df.iterrows():
+        if(index==sample):
+            json_data = row.to_json(orient='split')
+            return jsonify(json_data)
+           
+            
 
 if __name__ == "__main__":
     app.run(debug=True)

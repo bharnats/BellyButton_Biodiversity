@@ -22,9 +22,10 @@
           <div class="form-group">
               <p>SELECT Sample:</p>
               
-          <select class="select_width" id="selectSample">
-                    <option >Select Sample</option>
-                  </select>
+          <select class="select_width" id="selectSample" onchange="optionChanged(this.value)">
+                <option >Select Sample</option>
+            </select>
+             <div id="pie"></div>
             
           </div>
         </div>
