@@ -7,21 +7,19 @@ from flask import Flask, jsonify, render_template
 filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
 samples_df = pd.read_csv(filepath1)
 
-# transpose the dataframe inorder to loop through the df for each sample_id
-t_df = samples_df.T
-t_df.columns = t_df.iloc[0]
-t_df.drop('otu_id')
-
 # list of sample names
-samples = list(samples_df.columns.values)
+sample = list(samples_df.columns.values)
 # read the csv files into pandas as dataframes
 filepath2 = os.path.join("belly_button_biodiversity_otu_id.csv")
 otu_df = pd.read_csv(filepath2)
 otu_description = list(otu_df.lowest_taxonomic_unit_found)# read the csv files into pandas as dataframes
+# read the csv files into pandas as dataframes
 filepath3 = os.path.join("belly_button_biodiversity_MetaData.csv")
 metaData_df = pd.read_csv(filepath3)
+metaData_df = metaData_df[['AGE','BBTYPE','ETHNICITY','GENDER','LOCATION','WFREQ','SAMPLEID']]
 
 sample_metaData = metaData_df.to_dict('records')
+
 
 
 
@@ -34,7 +32,7 @@ def index():
 
 @app.route("/names")
 def names():
-    return jsonify(samples)
+    return jsonify(sample)
 
 
 @app.route("/otu")
@@ -52,8 +50,9 @@ def metaData(sample):
         search_term = "BB_"+ str(search)
         if search_term == sample:
             return jsonify(each)
-        message = "Sample ID  " + sample + " not found."
-        return jsonify({"error": message}), 404
+        
+    message = "Sample ID  " + sample + " not found."
+    return jsonify({"error": message}), 404
 
 @app.route("/wfreq/<sample>")
 def wfreq(sample):
@@ -62,15 +61,21 @@ def wfreq(sample):
         search_term = "BB_" + str(search)
         if search_term == sample:
             return jsonify(int(each['WFREQ']))
-        message = "Sample ID  " + sample + " not found."
-        return jsonify({"error": message}), 404
+    message = "Sample ID  " + sample + " not found."
+    return jsonify({"error": message}), 404
 
-@app.route('/samples/<sample>')
-def samp_values(sample):
-    for index,row in t_df.iterrows():
-        if(index==sample):
-            json_data = row.to_json(orient='split')
-            return jsonify(json_data)
+@app.route('/samples/<id>')
+def samples(id):
+    # read the csv files into pandas as dataframes
+    filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
+    samples_df = pd.read_csv(filepath1)
+    col = id
+    samples_df= samples_df[['otu_id',col]].sort_values(col, ascending=0)
+    samples_df.columns = ['otu_id', "sample_values"]
+    top_samples =  samples_df.head(10)
+    top_samples = top_samples.to_dict('list')
+
+    return jsonify(top_samples)
            
             
 
