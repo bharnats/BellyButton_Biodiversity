@@ -62,6 +62,19 @@ function optionChanged(id) {
 Plotly.newPlot('pie', data, layout);
 
    })
+meta_url='/metadata/'+id+'';
+d3.json(meta_url,function(error,response){
+  if(error) return console.warn(error);
+  
+    
+    d3.select("body")
+        .select("metadata")
+        .data(response)
+        .text(function(d) {
+            return d;
+        });
+
+})
 }
     
 

@@ -76,6 +76,7 @@ def samples(id):
     top_samples = top_samples.to_dict('list')
 
     return jsonify(top_samples)
+
            
             
 
