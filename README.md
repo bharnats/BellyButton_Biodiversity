@@ -29,7 +29,7 @@ Read the CSV data directly into Pandas DataFrames and output the data as JSON in
 
 
 ### HTML landing page:
-First, create a template called `index.html` for the dashboard landing page. Use the Bootstrap grid system to create the structure of the dashboard page.
+Create a template called `index.html` for the dashboard landing page. Use the Bootstrap grid system to create the structure of the dashboard page.
 
 ### Flask API
 Use Flask to design an API for the dataset and to serve the HTML and JavaScript required for the dashboard page.
