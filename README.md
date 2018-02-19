@@ -3,7 +3,11 @@
 ### Objective:
 Build an interactive dashboard to explore the [Belly Button Biodiversity DataSet](http://robdunnlab.com/projects/belly-button-biodiversity/)
 
-### Step 1 - Read the csv files into pandas dataFrames
+#### Snapshot of the dashboard
+
+![Dashboard](images/dashboard.PNG)
+
+### Read the csv files into pandas dataFrames
 
 Read the CSV data directly into Pandas DataFrames and output the data as JSON in the flask routes.
   * BellyButton_Biodiversity_Samples
@@ -24,7 +28,8 @@ Read the CSV data directly into Pandas DataFrames and output the data as JSON in
   
 
 
-* First, create a template called `index.html` for the dashboard landing page. Use the Bootstrap grid system to create the structure of the dashboard page.
+### HTML landing page:
+First, create a template called `index.html` for the dashboard landing page. Use the Bootstrap grid system to create the structure of the dashboard page.
 
 ### Flask API
 Use Flask to design an API for the dataset and to serve the HTML and JavaScript required for the dashboard page.
@@ -125,7 +130,7 @@ Use Flask to design an API for the dataset and to serve the HTML and JavaScript 
 ```
 
 ---
-## Step 2 - Plotly.js
+## Plotly.js
 
 Use Plotly.js to build interactive charts for the dashboard.
 
@@ -151,6 +156,30 @@ Use Plotly.js to build interactive charts for the dashboard.
   * Use `Plotly.restyle` to update the chart whenever a new sample is selected
 
   ![PIE Chart](images/pie.PNG)
+  
+  * Create a Bubble Chart that uses data from the routes `/samples/<sample>` and `/otu` to plot the __Sample Value__ vs the __OTU ID__ for the selected sample.
+
+  * Use the OTU IDs for the x values
+
+  * Use the Sample Values for the y values
+
+  * Use the Sample Values for the marker size
+
+  * Use the OTU IDs for the marker colors
+
+  * Use the OTU Description Data for the text values
+
+  * Use `Plotly.restyle` to update the chart whenever a new sample is selected
+
+  ![Bubble Chart](images/bubble.PNG)
+
+* Display the sample metadata from the route `/metadata/<sample>`
+
+  * Display each key/value pair from the metadata JSON object somewhere on the page
+
+  * Update the metadata for each sample that is selected
+
+
 
 
 
