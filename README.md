@@ -151,6 +151,30 @@ Use Plotly.js to build interactive charts for the dashboard.
   * Use `Plotly.restyle` to update the chart whenever a new sample is selected
 
   ![PIE Chart](images/pie.PNG)
+  
+  * Create a Bubble Chart that uses data from the routes `/samples/<sample>` and `/otu` to plot the __Sample Value__ vs the __OTU ID__ for the selected sample.
+
+  * Use the OTU IDs for the x values
+
+  * Use the Sample Values for the y values
+
+  * Use the Sample Values for the marker size
+
+  * Use the OTU IDs for the marker colors
+
+  * Use the OTU Description Data for the text values
+
+  * Use `Plotly.restyle` to update the chart whenever a new sample is selected
+
+  ![Bubble Chart](images/bubble.PNG)
+
+* Display the sample metadata from the route `/metadata/<sample>`
+
+  * Display each key/value pair from the metadata JSON object somewhere on the page
+
+  * Update the metadata for each sample that is selected
+
+
 
 
 
