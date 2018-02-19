@@ -125,6 +125,36 @@ Use Flask to design an API for the dataset and to serve the HTML and JavaScript 
 ```
 
 ---
+## Step 2 - Plotly.js
+
+Use Plotly.js to build interactive charts for the dashboard.
+
+* Use the route `/names` to populate a dropdown select element with the list of sample names.
+
+  * Use `document.querySelector`, `document.createDocumentFragment` and `fragment.appendChild` to populate the create option elements and append them to the dropdown selector.
+
+  * Use the following HTML tag for the dropdown selector
+
+  ```html
+  <select class="select_width" id="selectSample" onchange="optionChanged(this.value)">
+  ```
+  * Create a function called `optionChanged` to handle the change event when a new sample is selected (i.e. fetch data for the newly selected sample).
+
+  ![dropdown](images/drop_down.PNG)
+  
+  * Create a PIE chart that uses data from the routes `/samples/<sample>` and `/otu` to display the top 10 samples.
+
+  * Use the Sample Value as the values for the PIE chart
+
+  * Use the OTU ID as the labels for the pie chart
+  
+  * Use `Plotly.restyle` to update the chart whenever a new sample is selected
+
+  ![PIE Chart](images/pie.PNG)
+
+
+
+
 
 
 
