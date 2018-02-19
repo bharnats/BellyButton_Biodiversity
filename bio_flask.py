@@ -5,19 +5,19 @@ import pandas as pd
 from flask import Flask, jsonify, render_template
 
 # read the sample values vs OTU id csv files into pandas as dataframes
-filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
+filepath1 = os.path.join("raw_data/csv_files/belly_button_biodiversity_samples.csv")
 samples_df = pd.read_csv(filepath1)
 
 # list of sample names
 sample = list(samples_df.columns.values)
 
 # read the OTU description csv files into pandas as dataframes
-filepath2 = os.path.join("belly_button_biodiversity_otu_id.csv")
+filepath2 = os.path.join("raw_data/csv_files/belly_button_biodiversity_otu_id.csv")
 otu_df = pd.read_csv(filepath2)
 otu_description = list(otu_df.lowest_taxonomic_unit_found)
 
 # read the metadata csv files into pandas as dataframes
-filepath3 = os.path.join("belly_button_biodiversity_MetaData.csv")
+filepath3 = os.path.join("raw_data/csv_files/belly_button_biodiversity_MetaData.csv")
 metaData_df = pd.read_csv(filepath3)
 
 # pull only the required columns in the df
@@ -74,7 +74,7 @@ def wfreq(sample):
 @app.route('/samples/<id>')
 def samples(id):
     # read the csv files into pandas as dataframes
-    filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
+    filepath1 = os.path.join("raw_data/csv_files/belly_button_biodiversity_samples.csv")
     samples_df = pd.read_csv(filepath1)
     col = id
     samples_df= samples_df[['otu_id',col]].sort_values(col, ascending=0)
