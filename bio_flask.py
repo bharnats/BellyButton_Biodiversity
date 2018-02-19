@@ -1,27 +1,34 @@
 import os
+import numpy as np
 
 import pandas as pd
 from flask import Flask, jsonify, render_template
 
-# read the csv files into pandas as dataframes
+# read the sample values vs OTU id csv files into pandas as dataframes
 filepath1 = os.path.join("belly_button_biodiversity_samples.csv")
 samples_df = pd.read_csv(filepath1)
 
 # list of sample names
 sample = list(samples_df.columns.values)
-# read the csv files into pandas as dataframes
+
+# read the OTU description csv files into pandas as dataframes
 filepath2 = os.path.join("belly_button_biodiversity_otu_id.csv")
 otu_df = pd.read_csv(filepath2)
-otu_description = list(otu_df.lowest_taxonomic_unit_found)# read the csv files into pandas as dataframes
-# read the csv files into pandas as dataframes
+otu_description = list(otu_df.lowest_taxonomic_unit_found)
+
+# read the metadata csv files into pandas as dataframes
 filepath3 = os.path.join("belly_button_biodiversity_MetaData.csv")
 metaData_df = pd.read_csv(filepath3)
+
+# pull only the required columns in the df
 metaData_df = metaData_df[['AGE','BBTYPE','ETHNICITY','GENDER','LOCATION','WFREQ','SAMPLEID']]
 
+# replace the nan values with empty strings
+metaData_df = metaData_df.replace(np.nan, '', regex=True)
+
+
+# create a dictionary of the dataframe(metadata dictionary)
 sample_metaData = metaData_df.to_dict('records')
-
-
-
 
 
 app = Flask(__name__)
@@ -78,8 +85,6 @@ def samples(id):
     return jsonify(top_samples)
 
            
-            
-
 if __name__ == "__main__":
     app.run(debug=True)
     
