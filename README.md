@@ -5,7 +5,7 @@ Build an interactive dashboard to explore the [Belly Button Biodiversity DataSet
 
 #### Snapshot of the dashboard
 
-![Dashboard](BellyButton_Biodiversity/images/dashboard.PNG)
+![Dashboard](images/dashboard.PNG)
 
 ### Read the csv files into pandas dataFrames
 
