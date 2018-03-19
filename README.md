@@ -29,11 +29,11 @@ Read the CSV data directly into Pandas DataFrames and output the data as JSON in
 
 
 ### HTML landing page:
-Create a template called `index.html` for the dashboard landing page. Use the Bootstrap grid system to create the structure of the dashboard page.
+Created a template called `index.html` for the dashboard landing page. Used the Bootstrap grid system to create the structure of the dashboard page.
 
 ### Flask API
-Use Flask to design an API for the dataset and to serve the HTML and JavaScript required for the dashboard page.
-* create the following routes for the api.
+Used Flask to design an API for the dataset and to serve the HTML and JavaScript required for the dashboard page.
+* created the following routes for the api.
 
 ```python
 @app.route("/")
@@ -132,52 +132,52 @@ Use Flask to design an API for the dataset and to serve the HTML and JavaScript 
 ---
 ## Plotly.js
 
-Use Plotly.js to build interactive charts for the dashboard.
+Used Plotly.js to build interactive charts for the dashboard.
 
-* Use the route `/names` to populate a dropdown select element with the list of sample names.
+* Used the route `/names` to populate a dropdown select element with the list of sample names.
 
-  * Use `document.querySelector`, `document.createDocumentFragment` and `fragment.appendChild` to populate the create option elements and append them to the dropdown selector.
+  * Used `document.querySelector`, `document.createDocumentFragment` and `fragment.appendChild` to populate the create option elements and append them to the dropdown selector.
 
-  * Use the following HTML tag for the dropdown selector
+  * Used the following HTML tag for the dropdown selector
 
   ```html
   <select class="select_width" id="selectSample" onchange="optionChanged(this.value)">
   ```
-  * Create a function called `optionChanged` to handle the change event when a new sample is selected (i.e. fetch data for the newly selected sample).
+  * Created a function called `optionChanged` to handle the changed event when a new sample is selected (i.e. fetch data for the newly selected sample).
 
   ![dropdown](images/drop_down.PNG)
   
-  * Create a PIE chart that uses data from the routes `/samples/<sample>` and `/otu` to display the top 10 samples.
+  * Created a PIE chart that uses data from the routes `/samples/<sample>` and `/otu` to display the top 10 samples.
 
-  * Use the Sample Value as the values for the PIE chart
+  * Used the Sample Value as the values for the PIE chart
 
-  * Use the OTU ID as the labels for the pie chart
+  * Used the OTU ID as the labels for the pie chart
   
-  * Use `Plotly.restyle` to update the chart whenever a new sample is selected
+  * Used `Plotly.restyle` to update the chart whenever a new sample is selected
 
   ![PIE Chart](images/pie.PNG)
   
-  * Create a Bubble Chart that uses data from the routes `/samples/<sample>` and `/otu` to plot the __Sample Value__ vs the __OTU ID__ for the selected sample.
+  * Created a Bubble Chart that uses data from the routes `/samples/<sample>` and `/otu` to plot the __Sample Value__ vs the __OTU ID__ for the selected sample.
 
-  * Use the OTU IDs for the x values
+  * Used the OTU IDs for the x values
 
-  * Use the Sample Values for the y values
+  * Used the Sample Values for the y values
 
-  * Use the Sample Values for the marker size
+  * Used the Sample Values for the marker size
 
-  * Use the OTU IDs for the marker colors
+  * Used the OTU IDs for the marker colors
 
-  * Use the OTU Description Data for the text values
+  * Used the OTU Description Data for the text values
 
-  * Use `Plotly.restyle` to update the chart whenever a new sample is selected
+  * Used `Plotly.restyle` to update the chart whenever a new sample is selected
 
   ![Bubble Chart](images/bubble.PNG)
 
-* Display the sample metadata from the route `/metadata/<sample>`
+* Displayed the sample metadata from the route `/metadata/<sample>`
 
-  * Display each key/value pair from the metadata JSON object somewhere on the page
+  * Displayed each key/value pair from the metadata JSON object somewhere on the page
 
-  * Update the metadata for each sample that is selected
+  * Updated the metadata for each sample that is selected
 
 
 
