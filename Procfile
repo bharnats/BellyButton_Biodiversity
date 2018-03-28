@@ -1,1 +1,1 @@
-web: python bio_flask.py
+web: gunicorn app:app
